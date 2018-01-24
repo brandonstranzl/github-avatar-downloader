@@ -16,6 +16,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
   request(options, function(err, res, body) {
     cb(err, body)
+    // *this is code from first part of exercise - this was moved to CB function as don't need two loops of same data:
     // var data = JSON.parse(body);
     // for (var i = 0; i < data.length; i++) {
     //   console.log(data[i].url)
@@ -54,8 +55,3 @@ if (process.argv[2] == undefined) {
 
 
 // downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "./avatars/kvirani.jpg")
-// downloadImageByURL(url, filePath);
-
-
-// var data = JSON.parse(url).avatar_url;
-// console.log(obj.avatar_url);
