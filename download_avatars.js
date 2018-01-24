@@ -15,22 +15,23 @@ function getRepoContributors(repoOwner, repoName, cb) {
   };
 
   request(options, function(err, res, body) {
-    var data = JSON.parse(body);
-    for (var i = 0; i < data.length; i++) {
-      console.log(data[i].url)
+    cb(err, body)
+    // var data = JSON.parse(body);
+    // for (var i = 0; i < data.length; i++) {
+    //   console.log(data[i].url)
+    // }
     }
-  });
+  );
 }
 
   function cb(err, body) {
     var data = JSON.parse(body);
     for (var i = 0; i < data.length; i++) {
       var url = data[i].avatar_url;
-      var filePath = "./avatars/";
+      // var filePath = `./avatars/${data[i].url}`;
+      var filePath = "./avatars/" + data[i].login ;
+      downloadImageByURL(url, filePath);
     }
-      return data;
-      return avatar_url[i];
-      return filePath;
   }
 
 
@@ -45,13 +46,15 @@ function getRepoContributors(repoOwner, repoName, cb) {
            .pipe(fs.createWriteStream(filePath));
             }
 
-getRepoContributors("jquery", "jquery", function(err, result) {
-  console.log("Errors:", err);
-  // console.log("Result:", result);
-})
+if (process.argv[2] == undefined) {
+  console.log("GIVE ME THE PARAMETERS NEWBIE!");
+  } else {
+  getRepoContributors(process.argv[2], process.argv[3], cb)
+}
 
-downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "./avatars/kvirani.jpg")
-// downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "/avatars/url")
+
+// downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "./avatars/kvirani.jpg")
+// downloadImageByURL(url, filePath);
 
 
 // var data = JSON.parse(url).avatar_url;
