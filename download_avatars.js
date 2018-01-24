@@ -9,7 +9,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
     headers: {
-      'User-Agent': 'brandonstranzl',
+      'User-Agent': 'request',
       'Authorization': token.GITHUB_TOKEN
     }
   };
@@ -25,12 +25,12 @@ function getRepoContributors(repoOwner, repoName, cb) {
   function cb(err, body) {
     var data = JSON.parse(body);
     for (var i = 0; i < data.length; i++) {
-      var url = data[i].url;
-      var filePath = data[i].url_avatar;
+      var url = data[i].avatar_url;
+      var filePath = "./avatars/";
     }
       return data;
-      return url[i];
-      return filePath[i];
+      return avatar_url[i];
+      return filePath;
   }
 
 
@@ -50,7 +50,7 @@ getRepoContributors("jquery", "jquery", function(err, result) {
   // console.log("Result:", result);
 })
 
-// downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "./avatars/kvirani.jpg")
+downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "./avatars/kvirani.jpg")
 // downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "/avatars/url")
 
 
